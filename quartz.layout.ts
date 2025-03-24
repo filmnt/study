@@ -17,7 +17,7 @@ export const sharedPageComponents: SharedLayout = {
         category: 'Comments',
         // from data-category-id
         categoryId: 'DIC_kwDOONokFM4CoZfp',
-        lightTheme: "light_protanopia", // corresponds to light-theme.css in quartz/static/giscus/
+        lightTheme: "light", // corresponds to light-theme.css in quartz/static/giscus/
         darkTheme: "dark_protanopia", // corresponds to dark-theme.css quartz/static/giscus/
       }
     }),
