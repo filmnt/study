@@ -71,10 +71,10 @@ export const BuildArgv = {
     default: false,
     describe: "run a local server to live-preview your Quartz",
   },
-  watch: {
+  fastRebuild: {
     boolean: true,
     default: false,
-    describe: "watch for changes and rebuild automatically",
+    describe: "[experimental] rebuild only the changed files",
   },
   baseDir: {
     string: true,
@@ -83,12 +83,12 @@ export const BuildArgv = {
   },
   port: {
     number: true,
-    default: 8080,
+    default: 8081,
     describe: "port to serve Quartz on",
   },
   wsPort: {
     number: true,
-    default: 3001,
+    default: 3002,
     describe: "port to use for WebSocket-based hot-reload notifications",
   },
   remoteDevHost: {

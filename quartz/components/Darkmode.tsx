@@ -1,4 +1,6 @@
-// @ts-ignore
+// @ts-ignore: this is safe, we don't want to actually make darkmode.inline.ts a module as
+// modules are automatically deferred and we don't want that to happen for critical beforeDOMLoads
+// see: https://v8.dev/features/modules#defer
 import darkmodeScript from "./scripts/darkmode.inline"
 import styles from "./styles/darkmode.scss"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
@@ -7,12 +9,29 @@ import { classNames } from "../util/lang"
 
 const Darkmode: QuartzComponent = ({ displayClass, cfg }: QuartzComponentProps) => {
   return (
-    <button class={classNames(displayClass, "darkmode")}>
+    <div style="margin-left:auto;margin-right:0;width:140px" class={classNames(displayClass, "darkmode")}>
+
+
+    
+      <div style="display:inline-block;margin-left:1px;float:right">
+                <div title="Year Progress" class="progress-container"><div class="progress"><div class="bar"></div></div><div class="value"></div></div>
+                </div>      
+
+
+
+      <div style="display:inline-block;margin-top:4px;float:right">
+      <object type="application/x-shockwave-flash" width="30" height="25" data="https://www.youtube.com/v/jfKfPfyJRdk"></object>
+      </div>
+                   
+
+
+
+      <button class={classNames(displayClass, "darkmode")} id="darkmode" style="float:right;height:35px;margin-right:8px">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
         version="1.1"
-        class="dayIcon"
+        id="dayIcon"
         x="0px"
         y="0px"
         viewBox="0 0 35 35"
@@ -27,7 +46,7 @@ const Darkmode: QuartzComponent = ({ displayClass, cfg }: QuartzComponentProps) 
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
         version="1.1"
-        class="nightIcon"
+        id="nightIcon"
         x="0px"
         y="0px"
         viewBox="0 0 100 100"
@@ -39,6 +58,141 @@ const Darkmode: QuartzComponent = ({ displayClass, cfg }: QuartzComponentProps) 
         <path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path>
       </svg>
     </button>
+
+
+
+
+
+
+        <button title="Navigation" class="needfade" id="threedots" style="position:fixed;bottom: 40px;left:calc(100% - 68px);width: 40px;height:40px;opacity:0.3;z-index:1" onclick="openNavbar()"><i class="fa-solid fa-bars fa-xl"></i></button>
+
+
+        <dialog id="navbar-dialog" style="margin-top:-15px">
+        <h2 id="navclock" onload="showTime()" style="font-size:18px;"> </h2>
+        <span><br></br>
+        <button onclick="openSchedule()" style="float:left;height:29px;margin-top:0;margin-right:4px;"><i class="fa-regular fa-calendar-check"></i> Schedule</button>
+        <form style="float:left;"  action="https://duckduckgo.com/" method="post" target="_blank"  onsubmit="this.submit(); this.reset(); return false;" novalidate>
+        <label><input style="width:220px"  type="search" name="q" placeholder="Web Search🦆" /></label></form>
+        <select id="links" style="float:left;width:50px;margin-left:4px;margin-top:0px;height:29px">
+        <option value="" >Link</option>
+        <option value="https://filmnt.github.io/Scheduler/">Schedule</option>
+        <option value="https://monkeytype.com/">Monkeytype</option>    
+        <option value="https://itch.io/">itch.io</option>    
+        <option value="https://date.nager.at/">Worldwide Public Holiday</option>
+        <option value="https://screenfly.org/">Screenfly</option>
+        <option value="https://www.flightradar24.com/">Flightradar</option>
+        <option value="https://worldradiomap.com/">World Radio Map</option>
+        <option value="http://szimek.github.io/signature_pad/">Signature Pad</option>
+        <option value="https://silverweed.github.io/tiers/">Tierlist Maker</option>
+        <option value="https://redketchup.io/color-picker">RedKetchup</option>
+        <option value="https://paintmaps.com/">Paint Maps</option>
+        <option value="https://www.desmos.com/calculator">Desmos</option>
+        <option value="https://pyodide.org/en/stable/console.html">Pyodide</option>
+        <option value="https://notebook.basthon.fr/">basthon</option>
+        <option value="https://github.com/lukas-blecher/LaTeX-OCR">LaTeX-OCR (Advanced)</option>
+        <option value="https://vscode.dev/">VS Code</option>
+        <option value="https://pastebin.com/">PasteBin</option>
+        <option value="https://arxiv.org/">arXiv</option>
+        <option value="https://armrepo.ver.lt/">Windows ARM software</option>
+        <option value="https://github.com/ocrmypdf/OCRmyPDF">OCRmyPDF</option>
+        <option value="https://imgur.com/">imgur</option>
+        <option value="https://exiftool.org/">ExifTool</option>
+        <option value="https://duckduckgo.com/duckai/">DuckAI</option>
+        </select>
+        <div style="float:left;margin-bottom:-3px;">
+        <div id="google_translate_element" style="float:left;margin-right:4px;"></div>
+        <a id="resbtn" onclick="ResetTranslate()" style="margin-right:4px;"><button>Restore</button></a>
+        <span></span>
+        <button id="start" onclick="start()">White</button>
+        <span></span>
+        <button disabled id="stop" onclick="pause()">Noise</button>
+        <span></span>
+        <button onclick="openFood();" style="margin-left:4px;">Food…?</button>
+        </div>
+        <span style="float:left">
+        <button onclick="openStudy();" style="margin-right:4px;">Study with me…</button>
+        <span></span>
+        <button class="open-excal" onclick="openExcal()" style="margin-right:4px;">Excalidraw</button>
+        <span></span>
+        <button class="open-preview" onclick="openPreview()" style="margin-right:4px;">Preview</button>
+        <span></span>
+        <button class="open-graph" onclick="openGraph()" >Graph</button>
+        </span></span>
+        <iframe style="margin-top:6px" id="twitch-chat-embed" src="https://www.twitch.tv/embed/filmnt__/chat?darkpopout&parent=localhost&parent=filmnt.github.io&parent=filmnt.pages.dev" width="100%" height="700" frameborder="0"> </iframe>
+        </dialog>
+
+
+
+
+        <dialog id="schedule-dialog">
+        <span><iframe src="https://filmnt.github.io/Scheduler/" style="margin-top:-20px;top:0x; left:0; width:100%;height:100%;position:absolute;border:0;" allowfullscreen></iframe></span>
+        </dialog>
+
+        <dialog id="study-dialog">
+        <span><h1>Study with me…</h1>
+        <span style="margin-bottom:0px"><p class="time js-time" style="display:inline;font-size:20px;font-style: italic;margin-right:4px"></p><span class="button-container">
+        <button class="go-button js-go-button" style="margin-right:4px">Start</button>
+        <button class="reset-button js-reset-button" style="margin-right:4px">Reset</button>
+        <button class="add-lap-button js-add-lap-button">Timestamp</button>
+        <div class="confirmation-container js-confirmation-container" style="float:right;margin-top:-15px;position:relative;z-index:1;margin-right:5px" ></div></span></span>
+        <div class="todo-container" style="margin-top:4px;">
+        <div class="todo-app download-container"><div class="laps-list-wrapper"><ol class="laps-list js-lap-list"></ol></div>
+        <ul id="list-container"></ul><div class="todo-row"></div></div>
+        <div><button class="download-btn todo-btn" style="margin-right:4px"><i class="fa-solid fa-download"></i></button>
+        <input type="text" style="margin-right:4px" id="input-box" placeholder=" Add your task..."/>
+        <button onclick="addTask()" id="add" >Add</button></div>
+        </div>
+        </span></dialog>
+
+
+        <dialog id="food-dialog">
+        <span>
+        <div id="food-container">
+        <div id="meal" class="meal"></div><button class="get_meal" id="get_meal" style="float:right;">Get Meal 🍔</button></div>
+        </span>
+        </dialog>
+
+
+        <dialog id="excal-dialog">
+        <span><button onclick="closeExcal();closeNavbar()" style="position:fixed;top:10px;right:420px;width:40px;height:40px;opacity:0.3;z-index:1"><i class="fa-solid fa-xmark fa-xl"></i></button><iframe src="https://excalidraw.com/" style="margin-top:-20px;top:0x; left:0; width:100%;height:100%;position:absolute;border:0;" allowfullscreen></iframe></span>
+        </dialog>
+
+        <dialog id="graph-dialog">
+        <span><button onclick="closeGraph();closeNavbar()" style="position:fixed;top:10px;right:420px;width:40px;height:40px;opacity:0.3;z-index:1"><i class="fa-solid fa-xmark fa-xl"></i></button><iframe src="https://filmnt.github.io/SimpleGraph/" style="margin-top:-20px;top:0x; left:0; width:100%;height:100%;position:absolute;border:0;" allowfullscreen></iframe></span>
+        </dialog>
+
+
+        <dialog id="preview-dialog" style="width:380px;">
+        <div id="previewdiv"><button onclick="closePreview();closeNavbar()" style="position:fixed;top:10px;right:420px;width:40px;height:40px;opacity:0.3;z-index:1"><i class="fa-solid fa-xmark fa-xl"></i></button>
+        <section>
+        <form action="" method="POST" enctype="multipart/form-data">
+        <div class="preview-container"><div><div class="col-md-12"><div class="form-group">
+        <div class="preview-zone hidden"><div class="box box-solid"><div class="box-header with-border"><button type="button" class="remove-preview">Reset</button>
+        <div><h1 style="text-align:left;margin-left:4px;margin-top:-20px;margin-bottom:-2px">Preview</h1></div><div class="box-tools pull-right"></div></div>
+        <div class="box-body"></div></div></div>
+        <div class="dropzone-wrapper"><div class="dropzone-desc"><h1>Drag and Drop</h1></div>
+        <input type="file" name="img_logo" class="dropzone"/></div></div></div></div></div></form>
+        </section>
+        </div>
+        </dialog>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
   )
 }
 

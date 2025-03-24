@@ -15,12 +15,16 @@ export default ((opts?: Options) => {
       <footer class={`${displayClass ?? ""}`}>
         <p>
           {i18n(cfg.locale).components.footer.createdWith}{" "}
-          <a href="https://quartz.jzhao.xyz/">Quartz v{version}</a> © {year}
+          <a target="_blank" href="https://obsidian.md/download">Obsidian</a>• 
+          <a target="_blank" href="https://code.visualstudio.com/download">VS Code</a>•  
+          <a target="_blank" href="https://grok.com/">Grok</a>•  
+          <a target="_blank" href="https://quartz.jzhao.xyz/">Quartz</a>
+           <span> for </span> <a target="_blank" href="https://www.mozilla.org/firefox/">Firefox</a>  © {year}
         </p>
         <ul>
           {Object.entries(links).map(([text, link]) => (
             <li>
-              <a href={link}>{text}</a>
+              <a target="_blank" href={link}>{text}</a>
             </li>
           ))}
         </ul>
