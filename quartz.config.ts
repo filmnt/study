@@ -15,7 +15,7 @@ const config: QuartzConfig = {
     analytics: {
       provider: "google", tagId:"G-3SCFWXJXEQ"    },
     locale: "en-US",
-    baseUrl: "filmnt.github.io/setting",
+    baseUrl: "filmnt.github.io/study",
     ignorePatterns: ["private", "templates", ".obsidian", "**/🔖 Daily Notes", "**/🔐 Private Notes", ],
     defaultDateType: "modified",
     generateSocialImages: false,
