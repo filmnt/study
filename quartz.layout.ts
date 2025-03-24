@@ -10,7 +10,7 @@ export const sharedPageComponents: SharedLayout = {
       provider: 'giscus',
       options: {
         // from data-repo
-        repo: 'filmnt/setting',
+        repo: 'filmnt/study',
         // from data-repo-id
         repoId: 'R_kgDOONokFA',
         // from data-category
